@@ -4,13 +4,21 @@ import { useEffect, useState } from "react";
 import { api } from "@/services/api";
 import { FadeIn } from "@/components/ui/fade-in";
 import Link from "next/link";
-import { ChevronRight, ArrowRight } from "lucide-react";
+import { ArrowRight } from "@phosphor-icons/react";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
+interface Graduate {
+  id: string;
+  name: string;
+  owner: string;
+  image: string;
+  story: string;
+}
+
 export function GraduatesCarousel() {
-  const [graduates, setGraduates] = useState<any[]>([]);
+  const [graduates, setGraduates] = useState<Graduate[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

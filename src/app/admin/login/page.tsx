@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { KeyRound, Loader2 } from "lucide-react";
+import { Key, CircleNotch as Loader2 } from "@phosphor-icons/react";
 import { FadeIn } from "@/components/ui/fade-in";
 
 export default function AdminLogin() {
@@ -39,7 +39,7 @@ export default function AdminLogin() {
         <Card className="w-full max-w-md border-slate-700 bg-slate-800 text-white shadow-2xl">
           <CardHeader className="text-center space-y-2">
             <div className="mx-auto w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center text-primary mb-2">
-              <KeyRound className="w-6 h-6" />
+              <Key className="w-6 h-6" />
             </div>
             <CardTitle className="text-2xl">Admin Access</CardTitle>
             <CardDescription className="text-slate-400">

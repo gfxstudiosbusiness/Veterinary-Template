@@ -9,10 +9,10 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { 
-  Users, Calendar, Award, Plus, Upload, Trash2, 
-  CheckCircle, XCircle, Clock, RefreshCw, PawPrint,
-  Loader2, Settings, CalendarX, CalendarCheck
-} from "lucide-react";
+  Users, Calendar, Medal as Award, Plus, Upload, Trash as Trash2, 
+  CheckCircle, XCircle, Clock, ArrowsClockwise as RefreshCw, PawPrint,
+  CircleNotch as Loader2, Gear as Settings, CalendarX, CalendarCheck
+} from "@phosphor-icons/react";
 
 interface Graduate {
   id: string;
@@ -45,8 +45,14 @@ interface ClinicSettings {
 
 const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+interface DashboardStats {
+  totalPatients: number;
+  graduates: number;
+  appointmentsPending: number;
+}
+
 export default function AdminDashboard() {
-  const [stats, setStats] = useState<any>(null);
+  const [stats, setStats] = useState<DashboardStats | null>(null);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [graduates, setGraduates] = useState<Graduate[]>([]);
   const [settings, setSettings] = useState<ClinicSettings | null>(null);

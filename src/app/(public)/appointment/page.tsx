@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
-import { Calendar, ChevronRight, ChevronLeft, Check, Dog, User, CalendarDays, Loader2, AlertCircle, XCircle } from "lucide-react";
+import { Calendar, CaretRight as ChevronRight, CaretLeft as ChevronLeft, Check, Dog, User, CalendarBlank as CalendarDays, CircleNotch as Loader2, WarningCircle as AlertCircle, XCircle } from "@phosphor-icons/react";
 import { api } from "@/services/api";
 import { FadeIn } from "@/components/ui/fade-in";
 import Link from "next/link";
@@ -391,7 +391,7 @@ export default function AppointmentPage() {
                          {["Dog", "Cat", "Other"].map((type) => (
                            <button
                              key={type}
-                             onClick={() => updateData({ species: type as any })}
+                             onClick={() => updateData({ species: type as "Dog" | "Cat" | "Other" })}
                              className={cn(
                                "flex-1 py-3 rounded-lg border text-sm font-medium transition-all",
                                formData.species === type 

@@ -2,7 +2,7 @@
 
 import { FadeIn } from "@/components/ui/fade-in";
 import Image from "next/image";
-import { Heart, Stethoscope, PawPrint } from "lucide-react";
+import { Heart, Stethoscope, PawPrint } from "@phosphor-icons/react";
 
 export function MissionVision() {
   return (

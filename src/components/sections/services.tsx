@@ -1,7 +1,7 @@
 "use client";
 
 import { FadeIn } from "@/components/ui/fade-in";
-import { Stethoscope, Syringe, HeartPulse, Microscope, ShoppingBag, ShieldCheck } from "lucide-react";
+import { Stethoscope, Syringe, Heartbeat as HeartPulse, Microscope, ShoppingBag, ShieldCheck } from "@phosphor-icons/react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const services = [

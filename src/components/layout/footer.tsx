@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, MapPin, Phone, Clock, Mail } from "lucide-react";
+import { FacebookLogo as Facebook, MapPin, Phone, Clock, Envelope as Mail } from "@phosphor-icons/react";
 
 export function Footer() {
   return (

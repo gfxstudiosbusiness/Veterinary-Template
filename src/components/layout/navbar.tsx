@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { List as Menu, X } from "@phosphor-icons/react";
 import Image from "next/image";
 
 export function Navbar() {
