@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { SquaresFour as LayoutDashboard, Users, SignOut as LogOut, Image as FileImage } from "@phosphor-icons/react";
+import { SquaresFour as LayoutDashboard, Users, SignOut as LogOut, Image as FileImage } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 

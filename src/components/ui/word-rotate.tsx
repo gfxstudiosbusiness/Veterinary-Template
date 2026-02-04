@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface WordRotateProps {
@@ -16,10 +15,15 @@ export function WordRotate({
   className 
 }: WordRotateProps) {
   const [index, setIndex] = useState(0);
+  const [isFading, setIsFading] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % words.length);
+      setIsFading(true);
+      setTimeout(() => {
+        setIndex((prevIndex) => (prevIndex + 1) % words.length);
+        setIsFading(false);
+      }, 300); // Wait for fade out
     }, duration);
 
     return () => clearInterval(interval);
@@ -27,18 +31,15 @@ export function WordRotate({
 
   return (
     <div className="overflow-hidden py-2">
-      <AnimatePresence mode="wait">
-        <motion.h1
-          key={words[index]}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -50 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className={cn(className)}
-        >
-          {words[index]}
-        </motion.h1>
-      </AnimatePresence>
+      <h1
+        className={cn(
+          "transition-opacity duration-300 transform",
+          isFading ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0",
+          className
+        )}
+      >
+        {words[index]}
+      </h1>
     </div>
   );
 }

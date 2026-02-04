@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Key, CircleNotch as Loader2 } from "@phosphor-icons/react";
+import { Key, CircleNotch as Loader2 } from "@/components/icons";
 import { FadeIn } from "@/components/ui/fade-in";
 
 export default function AdminLogin() {

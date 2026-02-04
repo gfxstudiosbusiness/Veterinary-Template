@@ -5,7 +5,7 @@ import { api } from "@/services/api";
 import { FadeIn } from "@/components/ui/fade-in";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
-import { CircleNotch as Loader2, Heart as SearchHeart } from "@phosphor-icons/react";
+import { CircleNotch as Loader2, Heart as SearchHeart } from "@/components/icons";
 import { cn } from "@/lib/utils";
 
 // Types

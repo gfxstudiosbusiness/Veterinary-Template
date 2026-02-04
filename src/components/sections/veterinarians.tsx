@@ -2,7 +2,7 @@
 
 import { FadeIn } from "@/components/ui/fade-in";
 import Image from "next/image";
-import { PawPrint } from "@phosphor-icons/react";
+import { PawPrint } from "@/components/icons";
 
 const VETS = [
   {

@@ -12,7 +12,7 @@ import {
   Users, Calendar, Medal as Award, Plus, Upload, Trash as Trash2, 
   CheckCircle, XCircle, Clock, ArrowsClockwise as RefreshCw, PawPrint,
   CircleNotch as Loader2, Gear as Settings, CalendarX, CalendarCheck
-} from "@phosphor-icons/react";
+} from "@/components/icons";
 
 interface Graduate {
   id: string;

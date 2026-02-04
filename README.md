@@ -1,4 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# COS Veterinary Clinic Website
+
+**"Sincere Care. Transparent Pricing. Officially Protected."**
+
+## Overview
+
+This is the official website for **COS Veterinary Clinic**, modernizing the veterinary experience with a focus on transparency, accessibility, and genuine care. The site features a "Glassmorphism" aesthetic, a "Graduates" wall for fully vaccinated pets, and an intuitive appointment wizard.
+
+## Key Features
+
+-   **The Graduates (Officially Protected):** A digital "Wall of Fame" celebrating pets who have completed their vaccination courses.
+-   **Smart Appointment Booking:** A user-friendly wizard for booking wellness, medical, and surgery appointments.
+-   **Admin Dashboard:** Comprehensive tools for staff to manage appointments, patients, and content (slides, graduates, etc.).
+-   **Transparent Pricing:** Clear communication of costs to prevent surprise bills.
+-   **Modern UI/UX:** Built with a clean, medical-grade aesthetic using Glassmorphism effects and smooth animations.
+
+## Tech Stack
+
+-   **Framework:** [Next.js](https://nextjs.org) (App Router)
+-   **Language:** TypeScript
+-   **Styling:** Tailwind CSS, Vanilla CSS (for custom glass effects)
+-   **UI Library:** Magic UI, React Bits (for animations)
+-   **Icons:** Phosphor Icons
 
 ## Getting Started
 
@@ -16,21 +38,13 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+-   `src/app`: App Router pages and layouts.
+-   `src/components`: Reusable UI components and sections.
+-   `src/lib`: Utility functions and configuration.
+-   `public`: Static assets (images, icons).
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new).

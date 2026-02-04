@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { api } from "@/services/api";
 import { FadeIn } from "@/components/ui/fade-in";
 import Link from "next/link";
-import { ArrowRight } from "@phosphor-icons/react";
+import { ArrowRight } from "@/components/icons";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";

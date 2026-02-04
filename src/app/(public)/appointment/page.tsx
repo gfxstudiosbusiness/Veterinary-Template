@@ -1,11 +1,21 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+// import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
-import { Calendar, CaretRight as ChevronRight, CaretLeft as ChevronLeft, Check, Dog, User, CalendarBlank as CalendarDays, CircleNotch as Loader2, WarningCircle as AlertCircle, XCircle } from "@phosphor-icons/react";
+import { Calendar, CaretRight as ChevronRight, CaretLeft as ChevronLeft, Check, Dog, User, CalendarBlank as CalendarDays, CircleNotch as Loader2, WarningCircle as AlertCircle, XCircle } from "@/components/icons";
+// const Calendar = () => <span />;
+// const ChevronRight = () => <span />;
+// const ChevronLeft = () => <span />;
+// const Check = () => <span />;
+// const Dog = () => <span />;
+// const User = () => <span />;
+// const CalendarDays = () => <span />;
+// const Loader2 = () => <span />;
+// const AlertCircle = () => <span />;
+// const XCircle = () => <span />;
 import { api } from "@/services/api";
 import { FadeIn } from "@/components/ui/fade-in";
 import Link from "next/link";
@@ -329,12 +339,12 @@ export default function AppointmentPage() {
                  </div>
                )}
 
-               <AnimatePresence mode="wait" custom={step}>
+               {/* <AnimatePresence mode="wait" custom={step}> */}
                  {step === 1 && (
-                   <motion.div 
+                   <div 
                      key="step1" 
-                     custom={step} variants={variants} initial="enter" animate="center" exit="exit"
-                     transition={{ duration: 0.3 }}
+                    //  custom={step} variants={variants} initial="enter" animate="center" exit="exit"
+                    //  transition={{ duration: 0.3 }}
                      className="space-y-4"
                    >
                      <div className="flex items-center gap-2 mb-6 text-primary">
@@ -361,14 +371,14 @@ export default function AppointmentPage() {
                        />
                        <ErrorMessage message={errors.phone} />
                      </div>
-                   </motion.div>
+                   </div>
                  )}
 
                  {step === 2 && (
-                   <motion.div 
+                   <div 
                      key="step2"
-                     custom={step} variants={variants} initial="enter" animate="center" exit="exit"
-                     transition={{ duration: 0.3 }}
+                    //  custom={step} variants={variants} initial="enter" animate="center" exit="exit"
+                    //  transition={{ duration: 0.3 }}
                      className="space-y-4"
                    >
                      <div className="flex items-center gap-2 mb-6 text-primary">
@@ -404,14 +414,14 @@ export default function AppointmentPage() {
                          ))}
                        </div>
                      </div>
-                   </motion.div>
+                   </div>
                  )}
 
                  {step === 3 && (
-                   <motion.div 
+                   <div 
                      key="step3"
-                     custom={step} variants={variants} initial="enter" animate="center" exit="exit"
-                     transition={{ duration: 0.3 }}
+                    //  custom={step} variants={variants} initial="enter" animate="center" exit="exit"
+                    //  transition={{ duration: 0.3 }}
                      className="space-y-4"
                    >
                      <div className="flex items-center gap-2 mb-6 text-primary">
@@ -475,14 +485,14 @@ export default function AppointmentPage() {
                          <ErrorMessage message={errors.time} />
                        </div>
                      </div>
-                   </motion.div>
+                   </div>
                  )}
 
                  {step === 4 && (
-                   <motion.div 
+                   <div 
                      key="step4"
-                     custom={step} variants={variants} initial="enter" animate="center" exit="exit"
-                     transition={{ duration: 0.3 }}
+                    //  custom={step} variants={variants} initial="enter" animate="center" exit="exit"
+                    //  transition={{ duration: 0.3 }}
                      className="space-y-6"
                    >
                      <div className="flex items-center gap-2 mb-6 text-primary">
@@ -516,9 +526,9 @@ export default function AppointmentPage() {
                      <div className="text-xs text-slate-500 text-center">
                        By clicking confirm, you agree to our policies. We will contact you to confirm the appointment.
                      </div>
-                   </motion.div>
+                   </div>
                  )}
-               </AnimatePresence>
+               {/* </AnimatePresence> */}
              </div>
           </CardContent>
           <CardFooter className="bg-slate-50 p-6 flex justify-between">

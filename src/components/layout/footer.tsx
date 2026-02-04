@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FacebookLogo as Facebook, MapPin, Phone, Clock, Envelope as Mail } from "@phosphor-icons/react";
+import { FacebookLogo as Facebook, MapPin, Phone, Clock, Envelope as Mail } from "@/components/icons";
 
 export function Footer() {
   return (
