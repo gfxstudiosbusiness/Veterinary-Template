@@ -109,13 +109,13 @@ export function Calendar({
         onClick={() => handleDateClick(d)}
         disabled={isDisabled}
         className={cn(
-          "h-10 w-10 flex items-center justify-center rounded-lg text-sm transition-all duration-200",
+          "h-10 w-10 flex items-center justify-center rounded-xl text-sm transition-all duration-200 font-medium",
           isSelected 
-            ? "bg-teal-500 text-white shadow-lg shadow-teal-500/30 font-bold scale-110" 
+            ? "bg-teal-500 text-white shadow-md shadow-teal-500/30 scale-105 font-bold" 
             : isDisabled 
-              ? "text-slate-300 cursor-not-allowed bg-slate-50 opacity-50" 
-              : "text-slate-700 hover:bg-teal-50 hover:text-teal-600 font-medium",
-          isToday && !isSelected && "border border-teal-200 text-teal-600",
+              ? "text-slate-300 cursor-not-allowed bg-slate-50/50" 
+              : "text-slate-700 hover:bg-teal-50 hover:text-teal-700 hover:shadow-sm",
+          isToday && !isSelected && "border-2 border-teal-500 text-teal-700 font-bold",
         )}
       >
         {d}
@@ -124,49 +124,49 @@ export function Calendar({
   }
 
   return (
-    <div className={cn("p-4 bg-white rounded-2xl border border-slate-100 shadow-xl shadow-slate-200/50", className)}>
-      <div className="flex items-center justify-between mb-4">
+    <div className={cn("p-5 bg-white rounded-2xl border border-slate-200 shadow-lg shadow-slate-200/50", className)}>
+      <div className="flex items-center justify-between mb-6">
         <button 
           onClick={handlePrevMonth}
-          className="p-2 hover:bg-slate-100 rounded-full text-slate-500 hover:text-teal-600 transition-colors"
+          className="p-2 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-teal-600 transition-colors"
         >
           <CaretLeft className="w-5 h-5" />
         </button>
-        <div className="font-bold text-slate-800 text-lg">
-          {MONTHS[month]} <span className="text-teal-500">{year}</span>
+        <div className="font-bold text-slate-800 text-lg tracking-tight">
+          {MONTHS[month]} <span className="text-teal-600 font-extrabold">{year}</span>
         </div>
         <button 
           onClick={handleNextMonth}
-          className="p-2 hover:bg-slate-100 rounded-full text-slate-500 hover:text-teal-600 transition-colors"
+          className="p-2 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-teal-600 transition-colors"
         >
           <CaretRight className="w-5 h-5" />
         </button>
       </div>
 
-      <div className="grid grid-cols-7 mb-2">
+      <div className="grid grid-cols-7 mb-3">
         {DAYS.map(day => (
-          <div key={day} className="h-10 flex items-center justify-center text-xs font-bold text-slate-400 uppercase tracking-wider">
+          <div key={day} className="h-8 flex items-center justify-center text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">
             {day}
           </div>
         ))}
       </div>
 
-      <div className="grid grid-cols-7 gap-y-1 justify-items-center">
+      <div className="grid grid-cols-7 gap-y-2 gap-x-1 justify-items-center">
         {days}
       </div>
       
       {/* Legend */}
-      <div className="mt-4 pt-3 border-t border-slate-100 flex gap-4 justify-center text-[10px] text-slate-400 uppercase tracking-wide font-medium">
-         <div className="flex items-center gap-1.5">
-            <div className="w-2 h-2 rounded-full bg-teal-500" />
+      <div className="mt-6 pt-4 border-t border-slate-100 flex gap-6 justify-center text-[10px] text-slate-500 uppercase tracking-wider font-semibold">
+         <div className="flex items-center gap-2">
+            <div className="w-2.5 h-2.5 rounded-full bg-teal-500 shadow-sm shadow-teal-500/50" />
             Selected
          </div>
-         <div className="flex items-center gap-1.5">
-            <div className="w-2 h-2 rounded-full border border-teal-200" />
+         <div className="flex items-center gap-2">
+            <div className="w-2.5 h-2.5 rounded-full border-2 border-teal-500" />
             Today
          </div>
-         <div className="flex items-center gap-1.5">
-            <div className="w-2 h-2 rounded-full bg-slate-100" />
+         <div className="flex items-center gap-2">
+            <div className="w-2.5 h-2.5 rounded-full bg-slate-100 border border-slate-200" />
             Unavailable
          </div>
       </div>

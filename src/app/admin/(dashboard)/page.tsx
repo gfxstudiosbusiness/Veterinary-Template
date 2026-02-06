@@ -495,38 +495,68 @@ export default function AdminDashboard() {
             </Card>
 
             {/* Time Slots */}
-            <Card className="border-slate-200 shadow-sm lg:col-span-2">
-              <CardHeader>
+            {/* Time Slots */}
+            <Card className="border-slate-200 shadow-sm lg:col-span-2 overflow-hidden">
+              <CardHeader className="bg-slate-50/50 border-b border-slate-100">
                 <CardTitle className="text-lg flex items-center gap-2">
                   <Clock className="w-5 h-5 text-primary" />
                   Available Time Slots
                 </CardTitle>
                 <CardDescription>
-                  Manage the time slots available for booking.
+                  Define the daily schedule for appointments. These slots will appear in the booking wizard.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex gap-2">
-                  <Input 
-                    placeholder="e.g. 09:00 AM" 
-                    value={newTimeSlot} 
-                    onChange={e => setNewTimeSlot(e.target.value)}
-                    className="max-w-xs"
-                  />
-                  <Button onClick={addTimeSlot} disabled={!newTimeSlot}>
-                    <Plus className="w-4 h-4 mr-2" /> Add Slot
-                  </Button>
+              <CardContent className="p-6 space-y-6">
+                
+                {/* Add New Slot */}
+                <div className="flex flex-col sm:flex-row gap-3 items-end sm:items-center p-4 bg-slate-50 rounded-xl border border-slate-100">
+                   <div className="w-full sm:w-auto flex-1 space-y-1.5">
+                      <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Add New Slot</label>
+                      <div className="flex gap-2">
+                        <Input 
+                          placeholder="e.g. 09:00 AM" 
+                          value={newTimeSlot} 
+                          onChange={e => setNewTimeSlot(e.target.value)}
+                          className="bg-white"
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') addTimeSlot();
+                          }}
+                        />
+                        <Button onClick={addTimeSlot} disabled={!newTimeSlot}>
+                          <Plus className="w-4 h-4 mr-2" /> Add
+                        </Button>
+                      </div>
+                   </div>
+                   <div className="text-xs text-slate-400 hidden sm:block">
+                      <strong>Tip:</strong> Use a consistent format like "09:00 AM".
+                   </div>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {settings.timeSlots.map(slot => (
-                    <div key={slot} className="flex items-center gap-2 bg-slate-100 px-3 py-2 rounded-lg text-sm font-medium">
-                      <Clock className="w-4 h-4 text-slate-500" />
-                      {slot}
-                      <button onClick={() => removeTimeSlot(slot)} className="text-slate-400 hover:text-rose-500">
-                        <XCircle className="w-4 h-4" />
-                      </button>
-                    </div>
-                  ))}
+
+                {/* Slots Grid */}
+                <div>
+                   <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3 block">Current Schedule ({settings.timeSlots.length} slots)</label>
+                   
+                   {settings.timeSlots.length === 0 ? (
+                      <div className="text-center py-12 border-2 border-dashed border-slate-200 rounded-xl">
+                        <Clock className="w-12 h-12 mx-auto mb-3 text-slate-300" />
+                        <p className="text-slate-500 font-medium">No time slots added yet</p>
+                        <p className="text-xs text-slate-400">Add a slot above to get started</p>
+                      </div>
+                   ) : (
+                      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                        {settings.timeSlots.map(slot => (
+                          <div key={slot} className="group relative bg-white border border-slate-200 rounded-lg p-3 text-center hover:border-teal-400 hover:shadow-md transition-all">
+                             <div className="font-semibold text-slate-700">{slot}</div>
+                             <button 
+                               onClick={() => removeTimeSlot(slot)} 
+                               className="absolute -top-2 -right-2 bg-rose-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity shadow-sm hover:bg-rose-600 scale-90 hover:scale-100"
+                             >
+                               <XCircle className="w-4 h-4" />
+                             </button>
+                          </div>
+                        ))}
+                      </div>
+                   )}
                 </div>
               </CardContent>
             </Card>

@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
-import { Calendar as CalendarIcon, CaretRight as ChevronRight, CaretLeft as ChevronLeft, Check, Dog, User, CalendarBlank as CalendarDays, CircleNotch as Loader2, WarningCircle as AlertCircle, XCircle } from "@/components/icons";
+import { Calendar as CalendarIcon, CaretRight as ChevronRight, CaretLeft as ChevronLeft, Check, Dog, User, CalendarBlank as CalendarDays, CircleNotch as Loader2, WarningCircle as AlertCircle, XCircle, Clock } from "@/components/icons";
 import { Calendar } from "@/components/ui/calendar";
 // const Calendar = () => <span />;
 // const ChevronRight = () => <span />;
@@ -300,7 +300,7 @@ export default function AppointmentPage() {
   }
 
   return (
-    <div className="min-h-screen pt-32 pb-12 px-4 relative overflow-hidden bg-slate-50 bg-paws">
+    <div className="min-h-screen pt-40 pb-16 px-4 relative overflow-hidden bg-slate-50 bg-paws">
        {/* Background Decorative Blobs */}
       <div className="absolute top-0 right-0 -z-10 w-[800px] h-[800px] bg-sky-100 rounded-full blur-3xl opacity-50 translate-x-1/2 -translate-y-1/2 animate-pulse duration-[10s]" />
       <div className="absolute bottom-0 left-0 -z-10 w-[600px] h-[600px] bg-teal-50 rounded-full blur-3xl opacity-60 -translate-x-1/3 translate-y-1/3" />
@@ -419,12 +419,6 @@ export default function AppointmentPage() {
                  )}
 
                  {step === 3 && (
-                   <div 
-                     key="step3"
-                    //  custom={step} variants={variants} initial="enter" animate="center" exit="exit"
-                    //  transition={{ duration: 0.3 }}
-                     className="space-y-4"
-                   >
                      <div className="flex items-center gap-2 mb-6 text-primary">
                        <CalendarDays className="w-6 h-6" />
                        <h2 className="text-xl font-semibold">Date & Reason</h2>
@@ -432,20 +426,29 @@ export default function AppointmentPage() {
                      
                      {/* Info about available days */}
                      {settings && (
-                       <div className="p-3 bg-teal-50 border border-teal-200 rounded-lg text-sm text-teal-700 mb-4 flex justify-between items-center">
-                         <div>
-                            <strong>📅 Available:</strong> {settings.availableDays.map(d => DAY_NAMES[d]).join(", ")}
+                       <div className="flex flex-col sm:flex-row gap-4 p-4 bg-slate-50 border border-slate-100 rounded-xl text-sm text-slate-600 mb-6">
+                         <div className="flex items-start gap-2">
+                            <CalendarDays className="w-4 h-4 text-teal-500 mt-0.5" />
+                            <div>
+                               <span className="font-medium text-slate-900 block mb-1">Available Days</span>
+                               <p className="leading-relaxed">{settings.availableDays.map(d => DAY_NAMES[d]).join(", ")}</p>
+                            </div>
                          </div>
-                         <div className="text-right">
-                            <strong>⏰ Hours:</strong> {settings.openTime} - {settings.closeTime}
+                         <div className="hidden sm:block w-px bg-slate-200" />
+                         <div className="flex items-start gap-2">
+                            <Clock className="w-4 h-4 text-teal-500 mt-0.5" />
+                            <div>
+                               <span className="font-medium text-slate-900 block mb-1">Hours</span>
+                               <p className="leading-relaxed">{settings.openTime} - {settings.closeTime}</p>
+                            </div>
                          </div>
                        </div>
                      )}
 
-                     <div className="grid md:grid-cols-2 gap-6">
+                     <div className="grid md:grid-cols-2 gap-8">
                         {/* Left Column: Calendar */}
-                        <div className="space-y-2">
-                           <label className="text-sm font-medium">Select Date <span className="text-rose-500">*</span></label>
+                        <div className="space-y-3">
+                           <label className="text-sm font-medium text-slate-700">Select Date <span className="text-rose-500">*</span></label>
                            <Calendar 
                               value={formData.date}
                               onChange={(date) => updateData({ date })}
@@ -459,11 +462,11 @@ export default function AppointmentPage() {
                         </div>
 
                         {/* Right Column: Time & Reason */}
-                        <div className="space-y-4">
-                           <div className="space-y-2">
-                              <label className="text-sm font-medium">Reason for Visit</label>
+                        <div className="space-y-6">
+                           <div className="space-y-3">
+                              <label className="text-sm font-medium text-slate-700">Reason for Visit</label>
                               <select 
-                                className="flex h-12 w-full items-center justify-between rounded-xl border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                className="flex h-12 w-full items-center justify-between rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 transition-all shadow-sm"
                                 value={formData.reason}
                                 onChange={(e) => updateData({ reason: e.target.value })}
                               >
@@ -477,18 +480,18 @@ export default function AppointmentPage() {
                               </select>
                            </div>
 
-                           <div className="space-y-2">
-                             <label className="text-sm font-medium">Time Slot <span className="text-rose-500">*</span></label>
-                             <div className="grid grid-cols-2 gap-2">
+                           <div className="space-y-3">
+                             <label className="text-sm font-medium text-slate-700">Time Slot <span className="text-rose-500">*</span></label>
+                             <div className="grid grid-cols-2 gap-3">
                                 {settings?.timeSlots.map(slot => (
                                    <button
                                      key={slot}
                                      onClick={() => updateData({ time: slot })}
                                      className={cn(
-                                       "py-2 px-3 rounded-lg text-sm border transition-all duration-200",
+                                       "py-3 px-3 rounded-xl text-sm font-medium transition-all duration-200 border",
                                        formData.time === slot 
-                                         ? "bg-teal-500 text-white border-teal-600 shadow-md" 
-                                         : "border-slate-200 hover:border-teal-300 hover:bg-teal-50 text-slate-600"
+                                         ? "bg-teal-500 text-white border-teal-600 shadow-md shadow-teal-500/20 scale-[1.02]" 
+                                         : "bg-white border-slate-200 text-slate-600 hover:border-teal-300 hover:bg-teal-50/50 hover:text-teal-700 hover:shadow-sm"
                                      )}
                                    >
                                      {slot}
