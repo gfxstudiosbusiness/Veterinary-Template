@@ -5,7 +5,8 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
-import { Calendar, CaretRight as ChevronRight, CaretLeft as ChevronLeft, Check, Dog, User, CalendarBlank as CalendarDays, CircleNotch as Loader2, WarningCircle as AlertCircle, XCircle } from "@/components/icons";
+import { Calendar as CalendarIcon, CaretRight as ChevronRight, CaretLeft as ChevronLeft, Check, Dog, User, CalendarBlank as CalendarDays, CircleNotch as Loader2, WarningCircle as AlertCircle, XCircle } from "@/components/icons";
+import { Calendar } from "@/components/ui/calendar";
 // const Calendar = () => <span />;
 // const ChevronRight = () => <span />;
 // const ChevronLeft = () => <span />;
@@ -304,7 +305,7 @@ export default function AppointmentPage() {
       <div className="absolute top-0 right-0 -z-10 w-[800px] h-[800px] bg-sky-100 rounded-full blur-3xl opacity-50 translate-x-1/2 -translate-y-1/2 animate-pulse duration-[10s]" />
       <div className="absolute bottom-0 left-0 -z-10 w-[600px] h-[600px] bg-teal-50 rounded-full blur-3xl opacity-60 -translate-x-1/3 translate-y-1/3" />
 
-      <div className="container max-w-2xl mx-auto relative z-10">
+      <div className="container max-w-4xl mx-auto relative z-10">
         <div className="mb-12 text-center">
            <FadeIn>
              <h1 className="text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Book an Appointment</h1>
@@ -431,59 +432,72 @@ export default function AppointmentPage() {
                      
                      {/* Info about available days */}
                      {settings && (
-                       <div className="p-3 bg-teal-50 border border-teal-200 rounded-lg text-sm text-teal-700 mb-4">
-                         <strong>📅 Available:</strong> {settings.availableDays.map(d => DAY_NAMES[d]).join(", ")}
-                         <br />
-                         <strong>⏰ Hours:</strong> {settings.openTime} - {settings.closeTime}
+                       <div className="p-3 bg-teal-50 border border-teal-200 rounded-lg text-sm text-teal-700 mb-4 flex justify-between items-center">
+                         <div>
+                            <strong>📅 Available:</strong> {settings.availableDays.map(d => DAY_NAMES[d]).join(", ")}
+                         </div>
+                         <div className="text-right">
+                            <strong>⏰ Hours:</strong> {settings.openTime} - {settings.closeTime}
+                         </div>
                        </div>
                      )}
 
-                     <div className="space-y-2">
-                       <label className="text-sm font-medium">Reason for Visit</label>
-                       <select 
-                         className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                         value={formData.reason}
-                         onChange={(e) => updateData({ reason: e.target.value })}
-                       >
-                         <option>Wellness Check-up</option>
-                         <option>Vaccination</option>
-                         <option>Sick Consultation</option>
-                         <option>Surgery</option>
-                         <option>Confinement</option>
-                         <option>Deworming</option>
-                         <option>Laboratory Test</option>
-                       </select>
-                     </div>
-                     <div className="grid grid-cols-2 gap-4">
-                       <div className="space-y-2">
-                         <label className="text-sm font-medium">Date <span className="text-rose-500">*</span></label>
-                         <Input 
-                           type="date"
-                           value={formData.date}
-                           onChange={(e) => updateData({ date: e.target.value })}
-                           min={getMinDate()}
-                           max={getMaxDate()}
-                           className={cn(errors.date && "border-rose-300 focus:ring-rose-500")}
-                         />
-                         <ErrorMessage message={errors.date} />
-                       </div>
-                       <div className="space-y-2">
-                         <label className="text-sm font-medium">Time <span className="text-rose-500">*</span></label>
-                         <select 
-                             className={cn(
-                               "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-                               errors.time && "border-rose-300"
-                             )}
-                             value={formData.time}
-                             onChange={(e) => updateData({ time: e.target.value })}
-                         >
-                            <option value="" disabled>Select Time</option>
-                            {settings?.timeSlots.map(slot => (
-                              <option key={slot} value={slot}>{slot}</option>
-                            ))}
-                         </select>
-                         <ErrorMessage message={errors.time} />
-                       </div>
+                     <div className="grid md:grid-cols-2 gap-6">
+                        {/* Left Column: Calendar */}
+                        <div className="space-y-2">
+                           <label className="text-sm font-medium">Select Date <span className="text-rose-500">*</span></label>
+                           <Calendar 
+                              value={formData.date}
+                              onChange={(date) => updateData({ date })}
+                              availableDays={settings?.availableDays}
+                              blockedDates={settings?.blockedDates}
+                              minDate={getMinDate()}
+                              maxDate={getMaxDate()}
+                              className="w-full"
+                           />
+                           <ErrorMessage message={errors.date} />
+                        </div>
+
+                        {/* Right Column: Time & Reason */}
+                        <div className="space-y-4">
+                           <div className="space-y-2">
+                              <label className="text-sm font-medium">Reason for Visit</label>
+                              <select 
+                                className="flex h-12 w-full items-center justify-between rounded-xl border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                value={formData.reason}
+                                onChange={(e) => updateData({ reason: e.target.value })}
+                              >
+                                <option>Wellness Check-up</option>
+                                <option>Vaccination</option>
+                                <option>Sick Consultation</option>
+                                <option>Surgery</option>
+                                <option>Confinement</option>
+                                <option>Deworming</option>
+                                <option>Laboratory Test</option>
+                              </select>
+                           </div>
+
+                           <div className="space-y-2">
+                             <label className="text-sm font-medium">Time Slot <span className="text-rose-500">*</span></label>
+                             <div className="grid grid-cols-2 gap-2">
+                                {settings?.timeSlots.map(slot => (
+                                   <button
+                                     key={slot}
+                                     onClick={() => updateData({ time: slot })}
+                                     className={cn(
+                                       "py-2 px-3 rounded-lg text-sm border transition-all duration-200",
+                                       formData.time === slot 
+                                         ? "bg-teal-500 text-white border-teal-600 shadow-md" 
+                                         : "border-slate-200 hover:border-teal-300 hover:bg-teal-50 text-slate-600"
+                                     )}
+                                   >
+                                     {slot}
+                                   </button>
+                                ))}
+                             </div>
+                             <ErrorMessage message={errors.time} />
+                           </div>
+                        </div>
                      </div>
                    </div>
                  )}
